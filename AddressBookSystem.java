@@ -10,6 +10,7 @@ public class AddressBookSystem {
 	static AddressBookSystem obj = new AddressBookSystem();
 	static Map<String, AddressBookSystem> adBookObj = new HashMap<>();
 	static String addressBookName;
+
 	public void addAddressBook() throws IOException {
 		int option = 0;
 		System.out.println("Enter choice...\n1. Create new AddressBook\n2. Add new Persons to existing AddressBook");
@@ -45,6 +46,7 @@ public class AddressBookSystem {
 			}
 		}
 	}
+
 	public static void personData() throws IOException {
 		AddressBook addressBook = new AddressBook();
 		int count = 1;
@@ -53,7 +55,8 @@ public class AddressBookSystem {
 			System.out.println(
 					"Enter choice...\n1. Add new contact\n2. Edit existing details\n3. Delete existing contact\n4. Search"
 							+ "\n5. View Person\n6. Count of People\n7. Sort by first name\n8. Sort by city name\n9. Add contact to File"
-							+ "\n10. Read contact data from File\n11. Add contact to CSV File\n12. Read contact data from CSV File\n13. Exit");
+							+ "\n10. Read contact data from File\n11. Add contact to CSV File\n12. Read contact data from CSV File\n13. Add Contact to JSON File"
+							+ "\n14. Read Data from JSON File\n15. Exit");
 			int choice = sc.nextInt();
 			switch (choice) {
 			case 1:
@@ -116,7 +119,7 @@ public class AddressBookSystem {
 					break;
 				}
 			case 9:
-				addressBook.addDataToCSVFile(addressBookName);
+				addressBook.addContact(addressBookName);
 				System.out.println("Details added to text file");
 				break;
 			case 10:
@@ -130,6 +133,13 @@ public class AddressBookSystem {
 				addressBook.readDataFromCSVFile();
 				break;
 			case 13:
+				addressBook.addContact(addressBookName);
+				System.out.println("Contact added to JSON File");
+				break;
+			case 14:
+				addressBook.readDataFromJSONFile();
+				break;
+			case 15:
 				obj.addAddressBook();
 				count = 0;
 				break;
@@ -138,7 +148,7 @@ public class AddressBookSystem {
 				break;
 			}
 		}
-		System.out.println(addressBook.list);
+		System.out.println(AddressBook.list);
 	}
 
 	public static void main(String[] args) throws IOException {
